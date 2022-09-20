@@ -172,6 +172,7 @@ module ActionController
 
           def write(content, path, gzip)
             return unless path
+            return unless File.exist?(path.gsub("/").first)
 
             FileUtils.makedirs(File.dirname(path))
             File.open(path, "wb+") { |f| f.write(content) }
